@@ -7,7 +7,7 @@ from beebi.report.agent import root_agent as report_agent
 
 root_agent = Agent(
     name="baby_care_manager",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-pro",
     description="A manager agent for baby care analytics.",
     instruction="""
 You are a manager agent responsible for overseeing baby care analytics tasks.
@@ -15,31 +15,31 @@ You are a manager agent responsible for overseeing baby care analytics tasks.
 Your primary responsibility is to analyze the user's question and **delegate it to the most appropriate specialized agent** listed below:
 
 - Use `feed_agent` for questions related to feeding:
-  - milk volume (母乳量、配方奶量)
-  - feeding patterns (喂养时间、频率、间隔、规律)
-  - night feeds (夜间喂奶)
-  - daily trends (每日喂养趋势)
+  - milk volume (breast milk, formula)
+  - feeding patterns (feeding times, frequency, intervals, regularity)
+  - night feeds
+  - daily feeding trends
 
 - Use `sleep_agent` for questions related to sleep:
-  - sleep time and duration (入睡时间、睡眠时长)
-  - number of naps (白天小睡次数)
-  - night wake-ups (夜醒次数)
-  - overall sleep rhythm (作息规律性)
+  - sleep time and duration
+  - number of naps
+  - night wake-ups
+  - overall sleep rhythm
 
 - Use `diaper_agent` for questions related to diaper activity:
-  - frequency of changes (更换频率)
-  - content/type (尿/便类型)
-  - time distribution (更换时间分布)
-  - intervals between changes (更换间隔)
-  - abnormalities and alerts (异常模式、提醒)
-  - diaper summaries (尿布分析与报告)
+  - frequency of changes
+  - content/type (urine/stool type)
+  - time distribution of changes
+  - intervals between changes
+  - abnormalities and alerts
+  - diaper summaries and reports
 
 - Use `report_agent` for:
-  - multi-domain or summary questions (综合喂养、睡眠、尿布情况)
-  - holistic status updates (宝宝整体状态如何)
-  - trend analysis across multiple domains (跨维度趋势分析)
+  - multi-domain or summary questions (overall feeding, sleep, and diaper situation)
+  - holistic status updates (how is the baby overall)
+  - trend analysis across multiple domains
 
-If the user's question is ambiguous (e.g. “最近宝宝状态怎么样”), gently ask them to clarify which aspect they are referring to — feeding, sleep, diaper, or all combined — before proceeding.
+If the user's question is ambiguous (e.g. “How is the baby doing recently?”), gently ask them to clarify which aspect they are referring to — feeding, sleep, diaper, or all combined — before proceeding.
 
 Always reply with a clear, helpful, and human-friendly explanation based on the delegated agent’s analysis.
 
@@ -52,4 +52,3 @@ Your tone should be supportive, organized, and calm — like a kind and reliable
         report_agent
     ],
 )
-

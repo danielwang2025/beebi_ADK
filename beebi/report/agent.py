@@ -1,8 +1,8 @@
 from google.adk.agents import Agent, ParallelAgent, SequentialAgent
 
-from .sub_agents.diaper_report_agent.agent import comprehensive_diaper_report_agent
-from .sub_agents.feed_report_agent.agent import comprehensive_feed_report_agent 
-from .sub_agents.sleep_report_agent.agent import comprehensive_sleep_report_agent
+from .sub_agents.comprehensive_diaper_report_agent.agent import comprehensive_diaper_report_agent
+from .sub_agents.comprehensive_feed_report_agent.agent import comprehensive_feed_report_agent 
+from .sub_agents.comprehensive_sleep_report_agent.agent import comprehensive_sleep_report_agent
 
 parallel_reports_agent = ParallelAgent(
      name="parallel_reports_agent",
@@ -14,7 +14,7 @@ parallel_reports_agent = ParallelAgent(
 # Baby Care Synthesis Agent
 baby_care_synthesis_agent = Agent(
     name="baby_care_synthesis_agent",
-    model="gemini-2.5-flash-preview-05-20",  # 可根据需要替换为更强大的模型
+    model="gemini-2.5-pro", 
     description="Synthesizes feed, diaper, and sleep reports into a parent-friendly, data-driven summary with actionable insights.",
     instruction="""
 You are a Baby Care Intelligence Assistant. Your job is to read three structured reports — one each on **feeding**, **diaper changes**, and **sleep patterns** — and generate a comprehensive summary and guidance report for caregivers.

@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 from typing import Optional, Dict, Any
 
-from beebi.data.db_utils import fetch_activity_data  # 使用数据库工具获取数据
+from beebi.data.db_utils import fetch_activity_data  # Use database utility to fetch data
 
 def preprocess_sleep_data(
     days: Optional[int] = None,
@@ -13,12 +13,12 @@ def preprocess_sleep_data(
     df = fetch_activity_data(customer_id=cid, activity_type="Sleep", since_days=since_days)
     if df.empty:
         return df
-    # 转换时间和数值类型
+    # Convert time and numeric types
     df["StartTime"] = pd.to_datetime(df["StartTime"], errors="coerce")
     df["Duration"] = pd.to_numeric(df["Duration"], errors="coerce")
-    # 只保留有效记录
+    # Keep only valid records
     df = df.dropna(subset=["StartTime", "Duration"])
-    # 只保留类型为 Sleep 的记录
+    # Keep only records of type Sleep
     if "Type" in df.columns:
         df = df[df["Type"] == "Sleep"].copy()
     df = df.sort_values("StartTime")
@@ -43,7 +43,7 @@ def analyze_sleep_patterns(
                 }
             }
 
-        # 只分析最近 N 天的数据
+        # Only analyze data from the last N days
         if days is not None:
             cutoff_date = datetime.now().date() - timedelta(days=days)
             sleep_df = sleep_df[sleep_df["StartTime"].dt.date >= cutoff_date]
@@ -61,10 +61,10 @@ def analyze_sleep_patterns(
                 }
             }
 
-        # 计算 StartHour = 小时 + 分钟/60
+        # Calculate StartHour = hour + minute/60
         sleep_df["StartHour"] = sleep_df["StartTime"].dt.hour + sleep_df["StartTime"].dt.minute / 60.0
 
-        # 时间段划分
+        # Time segment classification
         def classify_segment(hour):
             if 6 <= hour < 12:
                 return "Morning"
@@ -78,12 +78,12 @@ def analyze_sleep_patterns(
         sleep_df["TimeSegment"] = sleep_df["StartHour"].apply(classify_segment)
         segment_counts = sleep_df["TimeSegment"].value_counts().to_dict()
 
-        # 睡眠一致性计算
+        # Sleep consistency calculation
         sleep_onsets = sleep_df["StartHour"]
         drift = round(sleep_onsets.max() - sleep_onsets.min(), 2) if not sleep_onsets.empty else None
         duration_std = round(sleep_df["Duration"].std(), 2) if not sleep_df["Duration"].empty else None
 
-        # 睡眠模式识别
+        # Sleep pattern recognition
         long_night_sleeps = sleep_df[(sleep_df["TimeSegment"] == "Overnight") & (sleep_df["Duration"] >= 240)]
         naps = sleep_df[(sleep_df["TimeSegment"].isin(["Morning", "Afternoon"])) & (sleep_df["Duration"] < 120)]
 
@@ -119,7 +119,7 @@ from google.adk.agents import Agent
 
 sleep_pattern_agent = Agent(
     name="sleep_pattern_agent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     description="Recognizes and analyzes sleep time patterns, segmentations, and consistency.",
     instruction=(
         "You are the Sleep Pattern Recognition Agent. "

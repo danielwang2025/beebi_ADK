@@ -17,15 +17,15 @@ def get_connection():
         database=database,
         port=1433
     )
-###original 
-###
+
 def fetch_activity_data(
     customer_id=10,
     activity_type=None,
     since_days=365
 ) -> pd.DataFrame:
     """
-    获取指定客户最近一年的活动数据（可指定类型），为所有agent提供原始数据。
+    Fetch activity data for a specific customer within the past year (optionally filter by type).
+    Returns raw data for all agents.
     """
     conn = get_connection()
     query = """
