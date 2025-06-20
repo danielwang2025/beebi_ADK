@@ -1,1 +1,1 @@
-from .agent import diaper_report_agent
+from . import agent as diaper_report_agent

@@ -1,1 +1,1 @@
-from .agent import feed_type_agent
+from . import agent as feed_type_agent

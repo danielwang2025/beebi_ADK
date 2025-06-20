@@ -2,7 +2,7 @@ import pandas as pd
 import re
 from typing import Optional, Dict, Any
 
-from beebi.data.db_utils import fetch_activity_data  # 使用数据库工具获取数据
+from beebi.data.db_utils import fetch_activity_data  # Use database utilities to fetch data
 
 def preprocess_feed_data(
     days: Optional[int] = None,
@@ -14,10 +14,10 @@ def preprocess_feed_data(
     if df.empty:
         return df
 
-    # 转换时间格式
+    # Convert time format
     df["StartTime"] = pd.to_datetime(df["StartTime"], errors="coerce")
 
-    # 提取 ml 数值
+    # Extract ml values
     def extract_ml(value):
         if pd.isna(value):
             return None
@@ -37,20 +37,20 @@ def analyze_feed_intervals(
 ) -> Dict[str, Any]:
     feed_df = preprocess_feed_data(days=days, customer_id=customer_id)
 
-    # 若无喂奶数据，直接返回提示
+    # If no feeding data, return prompt immediately
     if feed_df.empty or feed_df.shape[0] < 2:
         return {
-            "summary": "没有足够的喂奶记录，无法计算间隔。",
+            "summary": "Not enough feeding records to calculate intervals.",
             "average_interval_hours": None,
             "min_interval_hours": None,
             "max_interval_hours": None,
             "std_dev_hours": None,
-            "recommendation": "请确认是否有数据缺失或未及时记录。"
+            "recommendation": "Please check for missing or unrecorded data."
         }
 
     now = feed_df["StartTime"].max()
 
-    # 如果指定了天数，筛选最近 N 天的数据
+    # Filter data for the last N days if specified
     if days is not None:
         start_date = now - pd.Timedelta(days=days)
         recent_df = feed_df[feed_df["StartTime"] >= start_date].copy()
@@ -62,31 +62,31 @@ def analyze_feed_intervals(
 
     if recent_df.shape[0] < 2:
         return {
-            "summary": f"最近 {days} 天内喂奶记录过少，无法计算间隔。" if days else "喂奶记录过少，无法计算间隔。",
+            "summary": f"Too few feeding records in the last {days} days to calculate intervals." if days else "Too few feeding records to calculate intervals.",
             "average_interval_hours": None,
             "min_interval_hours": None,
             "max_interval_hours": None,
             "std_dev_hours": None,
-            "recommendation": "请确认是否有数据缺失或未及时记录。"
+            "recommendation": "Please check for missing or unrecorded data."
         }
 
-    # 计算间隔（单位：小时）
+    # Calculate intervals (hours)
     intervals = recent_df["StartTime"].diff().dropna().dt.total_seconds() / 3600
     avg_interval = intervals.mean()
     min_interval = intervals.min()
     max_interval = intervals.max()
     std_dev = intervals.std()
 
-    # 简单规律性分析
+    # Simple regularity analysis
     if std_dev < 1:
-        pattern = "喂奶时间间隔非常规律。"
+        pattern = "Feeding intervals are very regular."
     elif std_dev > 3:
-        pattern = "喂奶间隔波动较大，可能存在计划不一致或记录疏漏。"
+        pattern = "Feeding intervals vary widely, possibly due to inconsistent schedule or missing records."
     else:
-        pattern = "喂奶间隔有一定波动，基本正常。"
+        pattern = "Feeding intervals fluctuate moderately, which is generally normal."
 
     return {
-        "summary": f"最近 {days} 天内平均每 {avg_interval:.1f} 小时喂一次奶（最短 {min_interval:.1f} 小时，最长 {max_interval:.1f} 小时）。" if days else f"平均每 {avg_interval:.1f} 小时喂一次奶（最短 {min_interval:.1f} 小时，最长 {max_interval:.1f} 小时）。",
+        "summary": f"On average, feeding occurs every {avg_interval:.1f} hours (min {min_interval:.1f} hours, max {max_interval:.1f} hours) in the last {days} days." if days else f"On average, feeding occurs every {avg_interval:.1f} hours (min {min_interval:.1f} hours, max {max_interval:.1f} hours).",
         "average_interval_hours": round(avg_interval, 1),
         "min_interval_hours": round(min_interval, 1),
         "max_interval_hours": round(max_interval, 1),

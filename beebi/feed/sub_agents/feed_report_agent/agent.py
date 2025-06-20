@@ -1,14 +1,14 @@
 from typing import Optional
 from google.adk.agents import Agent
 
-# 导入各分析子模块
+# Import analysis submodules
 from ..feed_consistency_agent.agent import analyze_feed_consistency
 from ..feed_interval_agent.agent import analyze_feed_intervals
 from ..feed_time_of_day_agent.agent import analyze_feed_time_of_day
 from ..feed_type_agent.agent import analyze_feed_type_ratio
 from ..feed_volume_agent.agent import analyze_feed_volume
 
-# 结构化报告函数
+# Structured report formatting function
 def format_feed_report(
     days: int,
     consistency_data: dict,
@@ -18,7 +18,7 @@ def format_feed_report(
     volume_data: dict
 ) -> str:
     """
-    生成结构化英文喂奶报告。
+    Generate a structured feeding report in English.
     """
     report_lines = [f"Feeding Report for the Last {days} Days\n"]
 
@@ -58,7 +58,7 @@ def format_feed_report(
 
     # 6. Suggestions
     report_lines.append("6. Expert Suggestions:")
-    # 汇总所有建议
+    # Collect all recommendations
     suggestions = [
         volume_data.get("recommendation", ""),
         type_data.get("recommendation", ""),
@@ -117,7 +117,7 @@ Return the final structured report in a format that can be rendered directly by 
 Always prioritize clarity, evidence-based insights, and actionable advice.
 """
 
-# 定义sub-agent
+# Define the sub-agent
 feed_report_agent = Agent(
     name="feed_report_agent",
     model="gemini-2.5-flash",

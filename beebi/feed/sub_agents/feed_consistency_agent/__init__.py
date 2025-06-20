@@ -1,1 +1,1 @@
-from .agent import feed_consistency_agent
+from . import agent as feed_consistency_agent

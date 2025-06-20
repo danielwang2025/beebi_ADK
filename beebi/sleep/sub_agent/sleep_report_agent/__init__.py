@@ -1,1 +1,1 @@
-from .agent import sleep_report_agent
+from . import agent as sleep_report_agent

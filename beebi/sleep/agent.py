@@ -38,7 +38,7 @@ Always respond with the selected agent(s) and forward the user query to them.
         sleep_analysis_agent,
         sleep_pattern_agent,
         sleep_anomaly_agent,
-        sleep_report_agent  # 即之前定义好的 format_report 的agent
+        sleep_report_agent  
     ]
 )
 

@@ -2,7 +2,7 @@ import pandas as pd
 import re
 from typing import Optional, Dict, Any
 
-from beebi.data.db_utils import fetch_activity_data  # 使用数据库工具获取数据
+from beebi.data.db_utils import fetch_activity_data  # Use database utility to fetch data
 
 def preprocess_feed_data(
     days: Optional[int] = None,
@@ -14,10 +14,10 @@ def preprocess_feed_data(
     if df.empty:
         return df
 
-    # 转换时间格式
+    # Convert time format
     df["StartTime"] = pd.to_datetime(df["StartTime"], errors="coerce")
 
-    # 提取 ml 数值
+    # Extract ml values
     def extract_ml(value):
         if pd.isna(value):
             return None
@@ -37,19 +37,19 @@ def analyze_feed_volume(
 ) -> Dict[str, Any]:
     feed_df = preprocess_feed_data(days=days, customer_id=customer_id)
 
-    # 若无喂奶数据，直接返回提示
+    # Return message if no data is found
     if feed_df.empty:
         return {
-            "summary": "没有喂奶记录。",
+            "summary": "No feeding records found.",
             "total_volume_ml": 0,
             "average_volume_per_feed": 0,
             "feeds_per_day": 0,
-            "recommendation": "请确认是否有数据缺失或未及时记录。"
+            "recommendation": "Please check for missing or unrecorded data."
         }
 
     now = feed_df["StartTime"].max()
 
-    # 如果指定了天数，筛选最近 N 天的数据
+    # If days are specified, filter data for the most recent N days
     if days is not None:
         start_date = now - pd.Timedelta(days=days)
         recent_df = feed_df[feed_df["StartTime"] >= start_date].copy()
@@ -58,11 +58,11 @@ def analyze_feed_volume(
 
     if recent_df.empty:
         return {
-            "summary": f"最近 {days} 天内没有喂奶记录。" if days else "没有喂奶记录。",
+            "summary": f"No feeding records found in the last {days} days." if days else "No feeding records found.",
             "total_volume_ml": 0,
             "average_volume_per_feed": 0,
             "feeds_per_day": 0,
-            "recommendation": "请确认是否有数据缺失或未及时记录。"
+            "recommendation": "Please check for missing or unrecorded data."
         }
 
     total_volume = recent_df["Volume_ml"].sum()
@@ -71,14 +71,14 @@ def analyze_feed_volume(
     feeds_per_day = feed_count / days if days else feed_count
 
     if avg_per_feed < 90:
-        rec = "宝宝每次吃奶量偏少，建议关注是否存在吸吮无力或间隔过短的情况。"
+        rec = "The baby consumes a relatively small amount per feed. Consider checking for weak sucking or overly short intervals between feeds."
     elif avg_per_feed > 150:
-        rec = "宝宝每次吃奶量偏多，留意是否有呕吐或胀气现象。"
+        rec = "The baby consumes a relatively large amount per feed. Watch for signs of vomiting or bloating."
     else:
-        rec = "宝宝吃奶量处于健康范围，可以继续维持当前喂养策略。"
+        rec = "The baby's milk intake per feed is within a healthy range. You can maintain the current feeding strategy."
 
     return {
-        "summary": f"过去 {days} 天共记录 {feed_count} 次喂奶，总摄入 {total_volume} ml，平均每次 {avg_per_feed:.1f} ml。" if days else f"共记录 {feed_count} 次喂奶，总摄入 {total_volume} ml，平均每次 {avg_per_feed:.1f} ml。",
+        "summary": f"In the past {days} days, {feed_count} feeds were recorded with a total intake of {total_volume} ml, averaging {avg_per_feed:.1f} ml per feed." if days else f"A total of {feed_count} feeds were recorded with {total_volume} ml intake, averaging {avg_per_feed:.1f} ml per feed.",
         "total_volume_ml": int(total_volume),
         "average_volume_per_feed": round(avg_per_feed, 1),
         "feeds_per_day": round(feeds_per_day, 2),

@@ -2,7 +2,7 @@ from typing import Optional, Dict, Any
 import pandas as pd
 import re
 
-from beebi.data.db_utils import fetch_activity_data  # 使用数据库工具获取数据
+from beebi.data.db_utils import fetch_activity_data  
 
 def preprocess_feed_data(
     days: Optional[int] = None,
@@ -14,10 +14,10 @@ def preprocess_feed_data(
     if df.empty:
         return df
 
-    # 转换时间格式
+    # Convert time format
     df["StartTime"] = pd.to_datetime(df["StartTime"], errors="coerce")
 
-    # 提取 ml 数值
+    # Extract ml value
     def extract_ml(value):
         if pd.isna(value):
             return None
@@ -29,7 +29,7 @@ def preprocess_feed_data(
     feed_df = feed_df.dropna(subset=["StartTime"])
     feed_df.sort_values("StartTime", inplace=True)
 
-    # 提取 FeedType 字段（从 StartCondition 字段标准化）
+    # Extract FeedType from standardized StartCondition
     def extract_feed_type(cond):
         if pd.isna(cond):
             return None
@@ -52,10 +52,10 @@ def analyze_feed_type_ratio(
 
     if feed_df.empty or "FeedType" not in feed_df.columns:
         return {
-            "summary": "没有喂奶记录，无法分析母乳与配方奶比例。",
+            "summary": "No feeding records available for analysis.",
             "breast_milk_ratio": None,
             "formula_milk_ratio": None,
-            "recommendation": "请确保有喂奶数据。"
+            "recommendation": "Please ensure feeding data is available."
         }
 
     now = feed_df["StartTime"].max()
@@ -67,13 +67,13 @@ def analyze_feed_type_ratio(
     recent_df = feed_df[(feed_df["StartTime"] >= start_date) & (feed_df["FeedType"].notnull())].copy()
     if recent_df.empty:
         return {
-            "summary": f"最近 {days if days else '全部'} 天内无喂奶类型记录，无法分析母乳与配方奶比例。",
+            "summary": f"No feeding type records found in the last {days if days else 'all'} days.",
             "breast_milk_ratio": None,
             "formula_milk_ratio": None,
-            "recommendation": "请确保喂奶记录中包含母乳或配方奶信息。"
+            "recommendation": "Ensure feeding records include breast milk or formula milk information."
         }
 
-    # 统计母乳与配方奶的次数和占比
+    # Count and calculate ratio of breast milk and formula milk
     type_counts = recent_df["FeedType"].value_counts()
     total_feeds = type_counts.sum()
 
@@ -83,25 +83,24 @@ def analyze_feed_type_ratio(
     breast_milk_ratio = breast_milk_count / total_feeds if total_feeds else 0
     formula_milk_ratio = formula_milk_count / total_feeds if total_feeds else 0
 
-    # 趋势分析
+    # Trend analysis
     recent_df['Date'] = recent_df['StartTime'].dt.date
     daily_ratio = recent_df.groupby('Date')['FeedType'].apply(
         lambda x: (x == "BreastMilk").sum() / len(x)
     )
-    trend = "母乳比例变化不明显。"
+    trend = "No significant change in breast milk ratio."
     if len(daily_ratio) >= 2:
         if daily_ratio.iloc[-1] > daily_ratio.iloc[0]:
-            trend = "母乳比例呈上升趋势。"
+            trend = "Breast milk ratio shows an increasing trend."
         elif daily_ratio.iloc[-1] < daily_ratio.iloc[0]:
-            trend = "母乳比例呈下降趋势。"
+            trend = "Breast milk ratio shows a decreasing trend."
 
     return {
-        "summary": f"最近 {days if days else '全部'} 天内母乳占比约为 {breast_milk_ratio:.0%}，配方奶占比约为 {formula_milk_ratio:.0%}。{trend}",
+        "summary": f"In the last {days if days else 'all'} days, the breast milk ratio is approximately {breast_milk_ratio:.0%}, and formula milk ratio is approximately {formula_milk_ratio:.0%}. {trend}",
         "breast_milk_ratio": round(breast_milk_ratio, 2),
         "formula_milk_ratio": round(formula_milk_ratio, 2),
-        "recommendation": "根据喂养比例合理调整混合喂养策略。"
+        "recommendation": "Adjust your mixed feeding strategy accordingly based on the ratios."
     }
-
 
 from google.adk.agents import Agent
 

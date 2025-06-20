@@ -1,1 +1,1 @@
-from .agent import sleep_pattern_agent
+from . import agent as sleep_pattern_agent

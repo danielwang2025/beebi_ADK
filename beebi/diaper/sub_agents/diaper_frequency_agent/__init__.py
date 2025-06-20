@@ -1,1 +1,1 @@
-from .agent import diaper_frequency_agent
+from . import agent as diaper_frequency_agent

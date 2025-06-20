@@ -1,1 +1,1 @@
-from .agent import feed_time_of_day_agent
+from . import agent as feed_time_of_day_agent

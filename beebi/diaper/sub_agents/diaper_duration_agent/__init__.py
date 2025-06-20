@@ -1,1 +1,1 @@
-from .agent import diaper_duration_agent
+from . import agent as diaper_duration_agent

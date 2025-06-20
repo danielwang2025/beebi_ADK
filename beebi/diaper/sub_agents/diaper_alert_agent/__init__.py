@@ -1,1 +1,1 @@
-from .agent import diaper_alert_agent
+from . import agent as diaper_alert_agent

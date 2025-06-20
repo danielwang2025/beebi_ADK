@@ -1,1 +1,1 @@
-from .agent import feed_interval_agent
+from . import agent as feed_interval_agent

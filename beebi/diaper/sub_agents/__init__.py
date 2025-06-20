@@ -1,4 +1,4 @@
-from .diaper_alert_agent import diaper_alert_agent
+from .diaper_alert_agent import agent as diaper_alert_agent
 from .diaper_duration_agent import diaper_duration_agent
 from .diaper_frequency_agent import diaper_frequency_agent
 from .diaper_report_agent import diaper_report_agent
