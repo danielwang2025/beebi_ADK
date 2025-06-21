@@ -29,4 +29,7 @@ adk web
 ```
 
 # Acknowledgments
-This project is submitted to Devpost'''https://googlecloudmultiagents.devpost.com/?ref_feature=challenge&ref_medium=discover&_gl=1*thp20i*_gcl_au*MjA2MTY1MjQ2NS4xNzUwNDMwNDE2*_ga*NjkwNTAyNjEwLjE3NTA0MzA0MTY.*_ga_0YHJK3Y10M*czE3NTA0MzA0MTYkbzEkZzEkdDE3NTA0MzE0MDMkajU3JGwwJGgw''' as part of a hackathon project for the Agent Development Kit Hackathon with Google Cloud.
+This project is submitted to [![Devpost][devpost]][devpost-url] as part of a hackathon project for the Agent Development Kit Hackathon with Google Cloud.
+
+[devpost]: https://img.shields.io/badge/Devpost-003E54?style=for-the-badge&logo=Devpost&logoColor=white
+[devpost-url]: https://googlecloudmultiagents.devpost.com/?ref_feature=challenge&ref_medium=discover&_gl=1*yi86ui*_gcl_au*MTE3ODA4Njc5Ni4xNzUwNDcwNzUz*_ga*MzY4MDAwNTk4LjE3NTA0NzA3NTM.*_ga_0YHJK3Y10M*czE3NTA0NzA3NTIkbzEkZzEkdDE3NTA0NzI0MDgkajQ5JGwwJGgw
