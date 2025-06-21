@@ -4,7 +4,58 @@ We envisioned an intelligent companion for new parents—one that transforms sca
 ## Architecture Diagram
 ![image](https://github.com/user-attachments/assets/e8dcf3f8-3cbe-4ae6-b00f-ab3c55af6fb7)
 
-## Built With
+## Technology Stack
+
+#### Database Layer
+[![Azure SQL](https://img.shields.io/badge/Microsoft%20Azure%20SQL-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/en-us/products/azure-sql/)
+- Azure SQL Server
+- Azure SQL Database
+
+#### AI Agent Layer
+[![Google Gemini](https://img.shields.io/badge/Gemini-4285F4?style=for-the-badge&logo=googleai&logoColor=white)](https://deepmind.google/technologies/gemini/)
+[![Google Vertex AI](https://img.shields.io/badge/Vertex%20AI-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/vertex-ai)
+[![Cloud Run](https://img.shields.io/badge/Google%20Cloud%20Run-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/run)
+- Gemini LLM with Google AI SDK
+- SubAgents:
+  - Sleep Monitoring
+  - Feeding Analysis
+  - Diaper Change Tracking
+  - Health Reporting
+- Root Agent hosted on Cloud Run
+- Genetic insight summaries
+
+#### Mobile App Layer
+[![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/)
+- Native Android Application
+- User input processing
+- Response visualization
+
+#### Middleware
+[![Cloud Run](https://img.shields.io/badge/Google%20Cloud%20Run-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/run)
+- AI Agent Endpoint
+- Parameter transformation
+- Tool function routing
+
+## Data Flow
+1. **User Input**: Android app captures user requests
+2. **Data Transmission**: Azure SQL stores and transmits user basic data to AI Agent
+3. **Middleware**: Cloud Run endpoint processes requests with user context
+4. **AI Processing**:
+   - Root Agent orchestrates specialized subagents
+   - Gemini LLM generates personalized insights
+5. **Response Delivery**: Processed results returned to mobile app
+
+## Key Features
+- Multi-agent AI architecture with 4 specialized subagents
+- Context-aware parameter transformation
+- User data integration via Azure SQL
+- Cloud-native deployment
+- Genetic algorithm-powered insights
+
+## Deployment
+[![Google Cloud](https://img.shields.io/badge/Google%20Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com)
+[![Azure](https://img.shields.io/badge/Microsoft%20Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com)
+
 
 # Getting Started Backend
 ## Installation
