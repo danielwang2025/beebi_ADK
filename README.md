@@ -78,7 +78,7 @@ git clone https://github.com/danielwang2025/beebi_ADK
 2. Setup Environment
 ```bash
 # Create virtual environment in the root directory
-python -m venv .venv
+python -m venv venv
 # macOS/Linux:
 source .venv/bin/activate
 ```
