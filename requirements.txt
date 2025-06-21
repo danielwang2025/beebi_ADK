@@ -11,3 +11,4 @@ google-cloud-aiplatform[adk,agent_engines]
 requests
 pydantic
 cloudpickle
+pandas
