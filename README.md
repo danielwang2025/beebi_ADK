@@ -2,7 +2,7 @@
 We envisioned an intelligent companion for new parents—one that transforms scattered baby care logs into meaningful, real-time insights. With Beebi, we aim to relieve the cognitive load of early parenting by replacing static charts with conversational, AI-powered summaries. This vision redefines baby tracking as not just data collection, but a proactive, supportive experience that empowers parents to understand and respond to their baby's needs with clarity and confidence.
 
 ## Architecture Diagram
-![Beebi Architecture Diagram](<Architecture Diagram.jpeg>)
+![image](https://github.com/user-attachments/assets/e8dcf3f8-3cbe-4ae6-b00f-ab3c55af6fb7)
 
 ## Built With
 
