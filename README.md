@@ -6,35 +6,46 @@ We envisioned an intelligent companion for new parents—one that transforms sca
 
 ## Technology Stack
 
-#### Database Layer
+### Database Layer
 [![Azure SQL](https://img.shields.io/badge/Microsoft%20Azure%20SQL-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/en-us/products/azure-sql/)
 - Azure SQL Server
 - Azure SQL Database
+- Stores structured baby care event data
 
-#### AI Agent Layer
+### AI Agent Layer
 [![Google Gemini](https://img.shields.io/badge/Gemini-4285F4?style=for-the-badge&logo=googleai&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![Google ADK](https://img.shields.io/badge/Google%20ADK-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://google.github.io/adk-docs/)
 [![Cloud Google Run](https://img.shields.io/badge/Google%20Cloud%20Run-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/run)
-- Gemini LLM with Google AI SDK
+- Gemini LLM with Google AI SDK for generating personalized insights
+- Google ADK for building and orchestrating multi-agent AI architecture
 - SubAgents:
   - Sleep Monitoring
   - Feeding Analysis
   - Diaper Change Tracking
   - Health Reporting
-- Root Agent hosted on Cloud Run
+- Root Agent hosted on Cloud Run (deployment in process)
 - Genetic insight summaries
 
-#### Mobile App Layer
+### Mobile App Layer
 [![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/)
-- Native Android Application
+[![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/)
+- Native Android Application (Java/Kotlin)
 - User input processing
 - Response visualization
 
-#### Middleware
-[![Cloud Run](https://img.shields.io/badge/Google%20Cloud%20Run-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/run)
-- AI Agent Endpoint
+### Backend Layer
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+- Node.js + Express for the backend server
+- FastAPI to connect frontend with backend and AI services
 - Parameter transformation
 - Tool function routing
+
+### Deployment
+[![Cloud Run](https://img.shields.io/badge/Google%20Cloud%20Run-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/run)
+- Google Cloud Run for deploying the AI agent system
 
 ## Data Flow
 1. **User Input**: Android app captures user requests
