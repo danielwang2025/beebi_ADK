@@ -13,8 +13,8 @@ We envisioned an intelligent companion for new parents—one that transforms sca
 
 #### AI Agent Layer
 [![Google Gemini](https://img.shields.io/badge/Gemini-4285F4?style=for-the-badge&logo=googleai&logoColor=white)](https://deepmind.google/technologies/gemini/)
-[![Google Vertex AI](https://img.shields.io/badge/Vertex%20AI-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/vertex-ai)
-[![Cloud Run](https://img.shields.io/badge/Google%20Cloud%20Run-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/run)
+[![Google ADK](https://img.shields.io/badge/Google%20ADK-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://google.github.io/adk-docs/)
+[![Cloud Google Run](https://img.shields.io/badge/Google%20Cloud%20Run-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/run)
 - Gemini LLM with Google AI SDK
 - SubAgents:
   - Sleep Monitoring
@@ -38,19 +38,20 @@ We envisioned an intelligent companion for new parents—one that transforms sca
 
 ## Data Flow
 1. **User Input**: Android app captures user requests
-2. **Data Transmission**: Azure SQL stores and transmits user basic data to AI Agent
-3. **Middleware**: Cloud Run endpoint processes requests with user context
-4. **AI Processing**:
-   - Root Agent orchestrates specialized subagents
-   - Gemini LLM generates personalized insights
-5. **Response Delivery**: Processed results returned to mobile app
+2. **Middleware**: Cloud Run endpoint processes requests
+3. **AI Processing**:
+   - Root Agent orchestrates subagents
+   - Gemini LLM generates insights
+4. **Data Persistence**:
+   - Azure SQL stores interaction data
+   - Azure SQL transmit basic data to AI agnet layer
+6. **Response Delivery**: Processed results returned to mobile app
 
 ## Key Features
-- Multi-agent AI architecture with 4 specialized subagents
+- Google ADK Multi-agent AI architecture with 4 specialized subagents
 - Context-aware parameter transformation
 - User data integration via Azure SQL
-- Cloud-native deployment
-- Genetic algorithm-powered insights
+- Google Cloud Run deployment
 
 ## Deployment
 [![Google Cloud](https://img.shields.io/badge/Google%20Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com)
