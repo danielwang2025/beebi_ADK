@@ -28,6 +28,14 @@ pip install -r requirements.txt
 adk web
 ```
 
+## Contact
+
+Daniel(Zhichong) Wang - [Github](https://github.com/danielwang2025)  
+Tim Shi - [Github](https://github.com/TIMXSHI)  
+
+Project Link: 
+
+
 # Acknowledgments
 This project is submitted to [![Devpost][devpost]][devpost-url] as part of a hackathon project for the Agent Development Kit Hackathon with Google Cloud.
 
