@@ -4,6 +4,8 @@ We envisioned an intelligent companion for new parents—one that transforms sca
 ## Architecture Diagram
 ![微信图片_20250622210550](https://github.com/user-attachments/assets/1a546599-9c0c-48fa-816a-875117a50b80)
 
+### ADK FrameWork
+![Editor _ Mermaid Chart-2025-06-22-170041](https://github.com/user-attachments/assets/e375e110-51fb-4294-8a4a-507ebcdc421b)
 
 ## Technology Stack
 
