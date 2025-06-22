@@ -2,7 +2,8 @@
 We envisioned an intelligent companion for new parents—one that transforms scattered baby care logs into meaningful, real-time insights. With Beebi, we aim to relieve the cognitive load of early parenting by replacing static charts with conversational, AI-powered summaries. This vision redefines baby tracking as not just data collection, but a proactive, supportive experience that empowers parents to understand and respond to their baby's needs with clarity and confidence.
 
 ## Architecture Diagram
-![微信图片_20250622210550](https://github.com/user-attachments/assets/1a546599-9c0c-48fa-816a-875117a50b80)
+![original](https://github.com/user-attachments/assets/6c7c441e-73c9-4946-a0da-1310e28bd9ff)
+
 
 ### ADK FrameWork
 ![Editor _ Mermaid Chart-2025-06-22-170041](https://github.com/user-attachments/assets/e375e110-51fb-4294-8a4a-507ebcdc421b)
