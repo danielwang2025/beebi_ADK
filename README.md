@@ -128,11 +128,18 @@ Tim Shi - [Github](https://github.com/TIMXSHI)
 
 ## Contributors
 
-<a href="https://github.com/danielwang2025">
-  <img src="https://avatars.githubusercontent.com/u/125905701?v=4" width="50px;" alt="Daniel(Zhichong) Wang"/>
-</a>
-<a href="https://github.com/TIMXSHI">
-  <img src="https://avatars.githubusercontent.com/u/130257899?v=4" width="50px;" alt="Tim(Yaozhong) Shi"/>
+<p align="left">
+  <a href="https://github.com/danielwang2025" style="text-decoration: none; margin-right: 20px;">
+    <img src="https://avatars.githubusercontent.com/u/125905701?v=4" width="80px;" style="border-radius: 50%;" alt="Daniel(Zhichong) Wang"/><br/>
+    <sub><b>Daniel(Zhichong) Wang</b></sub>
+  </a>
+  
+  <a href="https://github.com/TIMXSHI" style="text-decoration: none; margin-right: 20px;">
+    <img src="https://avatars.githubusercontent.com/u/130257899?v=4" width="80px;" style="border-radius: 50%;" alt="Tim(Yaozhong) Shi"/><br/>
+    <sub><b>Tim(Yaozhong) Shi</b></sub>
+  </a>
+</p>
+
 </a>
 
 # Acknowledgments
