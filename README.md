@@ -1,12 +1,26 @@
 # About the Project
+About the Project
 We envisioned an intelligent companion for new parents—one that transforms scattered baby care logs into meaningful, real-time insights. With Beebi, we aim to relieve the cognitive load of early parenting by replacing static charts with conversational, AI-powered summaries. This vision redefines baby tracking as not just data collection, but a proactive, supportive experience that empowers parents to understand and respond to their baby's needs with clarity and confidence.
 
-## Architecture Diagram
-![original](https://github.com/user-attachments/assets/6c7c441e-73c9-4946-a0da-1310e28bd9ff)
+Since the core of this project is built on Google's Agent Developer Kit (ADK), this repository only includes backend logic and agent orchestration—it does not contain any frontend interface code.
 
+To test the functionality of the system, we provide two recommended methods:
+#### Local run with ADK:
+Use the command ```adk web ``` followed by ```adk run beebi ``` to launch the ADK runtime and serve the Beebi agent locally.
+
+#### AdkApp Testing:
+Instantiate and interact with the agent programmatically via the AdkApp class for scripted or automated testing scenarios.
+
+## Architecture Diagram
+![original](https://github.com/user-attachments/assets/fa87c310-fb4c-47ff-bc9a-3f63bb14174c)
 
 ### ADK FrameWork
 ![Editor _ Mermaid Chart-2025-06-22-170041](https://github.com/user-attachments/assets/e375e110-51fb-4294-8a4a-507ebcdc421b)
+
+### User Interface Demo
+![screenshot1](https://github.com/user-attachments/assets/be4eab67-2803-4dfb-93e6-12c940ca3a0d)
+![screenshot2](https://github.com/user-attachments/assets/32fabc43-ffcd-4943-9c56-234e2d45cc0f)
+
 
 ## Technology Stack
 
@@ -20,6 +34,7 @@ We envisioned an intelligent companion for new parents—one that transforms sca
 [![Google Gemini](https://img.shields.io/badge/Gemini-4285F4?style=for-the-badge&logo=googleai&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![Google ADK](https://img.shields.io/badge/Google%20ADK-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://google.github.io/adk-docs/)
 [![Cloud Google Run](https://img.shields.io/badge/Google%20Cloud%20Run-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/run)
+[![Google Vertex AI](https://img.shields.io/badge/Google%20Vertex%20AI-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/vertex-ai)
 - Gemini LLM with Google AI SDK for generating personalized insights
 - Google ADK for building and orchestrating multi-agent AI architecture
 - SubAgents:
@@ -73,7 +88,7 @@ We envisioned an intelligent companion for new parents—one that transforms sca
 [![Azure](https://img.shields.io/badge/Microsoft%20Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com)
 
 
-# Getting Started Backend
+# Local run with ADK
 ## Installation
 1. Clone the repo
 ```bash
@@ -92,16 +107,24 @@ pip install -r requirements.txt
 ```
 ## Run the project
 ```bash
+adk run beebi_AdkWeb
+or
+cd beebi_AdkWeb
 adk web
 ```
+
+# Programmatic agent testing(inlcuding deployment Code)
+
+#### 1. Enable Vertex AI API
+#### 2. Need a service account with Vertex AI + Agent Engine access (Set up service account credentials)
+#### 3. Set your active project ID    gcloud config set project [YOUR_PROJECT_ID]
+#### 4. Install dependencies/requirements.txt
+#### 5. ``` cd beebi_AdkApp python agent.py ```
 
 ## Contact
 
 Daniel(Zhichong) Wang - [Github](https://github.com/danielwang2025)  
 Tim Shi - [Github](https://github.com/TIMXSHI)  
-
-Project Link: 
-
 
 # Acknowledgments
 This project is submitted to [![Devpost][devpost]][devpost-url] as part of a hackathon project for the Agent Development Kit Hackathon with Google Cloud.
