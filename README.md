@@ -140,7 +140,6 @@ Tim Shi - [Github](https://github.com/TIMXSHI)
   </a>
 </p>
 
-</a>
 
 # Acknowledgments
 This project is submitted to [![Devpost][devpost]][devpost-url] as part of a hackathon project for the Agent Development Kit Hackathon with Google Cloud.
